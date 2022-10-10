@@ -1,0 +1,61 @@
+<h2>Template: Basicos</h2>
+<hr>
+
+<div class="row">
+    <div class="col">
+        <form (ngSubmit)="guardar()" #miformulario="ngForm">
+
+            <!-- Campo de producto -->
+            <div class="mb-3 row">
+                <label for="col-sm-3 col-form-label">Producto</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" ngModel name="producto" placeholder="Nombre del producto" required minlength="3">
+                    <span class="form-text text-danger" *ngIf="nombreValido()">Debe de ser de 3 letras</span>
+                </div>
+            </div>
+
+            <!-- Campo de precio -->
+            <div class="mb-3 row">
+                <label for="col-sm-3 col-form-label">Precio</label>
+                <div class="col-sm-9">
+                    <input type="number" class="form-control" ngModel name="precio" placeholder="Precio del producto" required>
+                    <span class="form-text text-danger" *ngIf="precioValido()">Debe de ser mayor a cero</span>
+                </div>
+            </div>
+
+            <!-- Campo de existencias -->
+            <div class="mb-3 row">
+                <label for="col-sm-3 col-form-label">Existencias</label>
+                <div class="col-sm-9">
+                    <input type="number" class="form-control" ngModel name="existencias" customMin [minimo]="0" placeholder="Existencias del producto" required>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <button type="submit" [disabled]="miformulario.invalid" class="btn btn-primary float-end">Guardar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col">
+        <span>Valid</span>
+        <pre>{{ miformulario.valid }}</pre>
+
+        <span>Pristine</span>
+        <pre>{{ miformulario.pristine }}</pre>
+
+        <span>Touched</span>
+        <pre>{{ miformulario.touched }}</pre>
+        
+        <span>Controls</span>
+        <pre>{{ miformulario.controls }}</pre>
+
+        <span>Valor</span>
+        <pre>{{ miformulario.value | json }}</pre>
+    </div>
+</div>
